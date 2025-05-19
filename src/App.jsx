@@ -66,7 +66,7 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl sm:text-6xl font-bold text-white mb-6"
           >
-            Il Tuo Assistente AI Intelligente
+            Your Intelligent AI Assistant
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
