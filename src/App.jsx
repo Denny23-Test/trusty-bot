@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { FaRobot, FaBrain, FaComments, FaShieldAlt } from 'react-icons/fa'
+import Logo from './components/Logo'
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center">
-              <svg className="trusty-inline-flex" width="25" height="30" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1204.7"><polygon fill="#0072ce" points="1024 -1.3 0 179.4 0 1203.4 755.5 1070.1 933.5 1206 933.5 1038.7 1024 1022.7 1024 -1.3"></polygon><path fill="#fff" d="M341.1,515.7c20.4,0,37.6-7.1,52-21.4s21.4-31.5,21.4-52-7.1-37.6-21.4-52c-14.2-14.2-31.5-21.4-52-21.4s-37.6,7.1-52,21.4-21.4,31.5-21.4,52,7.1,37.6,21.4,52c14.2,14.2,31.5,21.4,52,21.4Z"></path><path fill="#fff" d="M683,515.7c20.4,0,37.6-7.1,52-21.4s21.4-31.5,21.4-52-7.1-37.6-21.4-52c-14.2-14.2-31.5-21.4-52-21.4s-37.6,7.1-52,21.4-21.4,31.5-21.4,52,7.1,37.6,21.4,52c14.2,14.2,31.5,21.4,52,21.4Z"></path><path fill="#fff" d="M361.2,786.2c45.2,31.3,95.4,47,150.8,47h.1c55.3,0,105.6-15.7,150.8-47,45.2-31.3,78-72.7,98.3-124h-498.2c20.4,51.3,53.1,92.6,98.3,124h0Z"></path></svg>
+              <Logo />
               <span className="ml-2 text-xl font-bold">Trusty AI</span>
             </div>
             <div className="hidden md:flex space-x-8">
@@ -151,7 +152,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center mb-4 md:mb-0">
-              <svg className="trusty-inline-flex" width="25" height="30" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1204.7"><polygon fill="#0072ce" points="1024 -1.3 0 179.4 0 1203.4 755.5 1070.1 933.5 1206 933.5 1038.7 1024 1022.7 1024 -1.3"></polygon><path fill="#fff" d="M341.1,515.7c20.4,0,37.6-7.1,52-21.4s21.4-31.5,21.4-52-7.1-37.6-21.4-52c-14.2-14.2-31.5-21.4-52-21.4s-37.6,7.1-52,21.4-21.4,31.5-21.4,52,7.1,37.6,21.4,52c14.2,14.2,31.5,21.4,52,21.4Z"></path><path fill="#fff" d="M683,515.7c20.4,0,37.6-7.1,52-21.4s21.4-31.5,21.4-52-7.1-37.6-21.4-52c-14.2-14.2-31.5-21.4-52-21.4s-37.6,7.1-52,21.4-21.4,31.5-21.4,52,7.1,37.6,21.4,52c14.2,14.2,31.5,21.4,52,21.4Z"></path><path fill="#fff" d="M361.2,786.2c45.2,31.3,95.4,47,150.8,47h.1c55.3,0,105.6-15.7,150.8-47,45.2-31.3,78-72.7,98.3-124h-498.2c20.4,51.3,53.1,92.6,98.3,124h0Z"></path></svg>
+              <Logo />
               <span className="ml-2 text-xl font-bold">Trusty AI</span>
             </div>
             <div className="text-gray-400">
