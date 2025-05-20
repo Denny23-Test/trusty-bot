@@ -68,7 +68,7 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl sm:text-6xl font-bold text-white mb-6"
           >
-            Your Intelligent AI Assistant
+            Il Tuo Assistente AI Intelligente
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -334,7 +334,7 @@ function TestimonialsCarousel() {
             className={`w-3 h-3 rounded-full transition-colors duration-300 ${
               index === currentIndex ? "bg-primary" : "bg-gray-300"
             }`}
-            aria-label={`Go to testimonial ${index + 1}`}
+            aria-label={`Vai alla testimonianza ${index + 1}`}
           />
         ))}
       </div>
@@ -343,14 +343,14 @@ function TestimonialsCarousel() {
       <button
         onClick={prevTestimonial}
         className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 md:-translate-x-full bg-white p-3 rounded-full shadow-md text-primary hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
-        aria-label="Previous testimonial"
+        aria-label="Testimonianza precedente"
       >
         <FaChevronLeft className="w-5 h-5" />
       </button>
       <button
         onClick={nextTestimonial}
         className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 md:translate-x-full bg-white p-3 rounded-full shadow-md text-primary hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
-        aria-label="Next testimonial"
+        aria-label="Testimonianza successiva"
       >
         <FaChevronRight className="w-5 h-5" />
       </button>

@@ -1,0 +1,29 @@
+import { expect, afterEach, vi } from 'vitest';
+import { cleanup } from '@testing-library/react';
+import * as matchers from '@testing-library/jest-dom/matchers';
+
+// Extend Vitest's expect method with methods from react-testing-library
+expect.extend(matchers);
+
+// Mock IntersectionObserver
+class MockIntersectionObserver {
+  constructor(callback) {
+    this.callback = callback;
+  }
+  observe() {
+    return null;
+  }
+  unobserve() {
+    return null;
+  }
+  disconnect() {
+    return null;
+  }
+}
+
+global.IntersectionObserver = MockIntersectionObserver;
+
+// Runs a cleanup after each test case
+afterEach(() => {
+  cleanup();
+});
