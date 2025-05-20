@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion'
-import { FaRobot, FaBrain, FaComments, FaShieldAlt } from 'react-icons/fa'
+import { motion, AnimatePresence } from 'framer-motion'
+import { FaRobot, FaBrain, FaComments, FaShieldAlt, FaQuoteLeft, FaChevronLeft, FaChevronRight, FaStar } from 'react-icons/fa'
+import { useState, useEffect } from 'react'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <div className="hidden md:flex space-x-8">
               <a href="#features" className="text-gray-600 hover:text-primary">Caratteristiche</a>
               <a href="#how-it-works" className="text-gray-600 hover:text-primary">Come Funziona</a>
+              <a href="#testimonials" className="text-gray-600 hover:text-primary">Testimonianze</a>
               <a href="#contact" className="text-gray-600 hover:text-primary">Contatti</a>
             </div>
           </div>
@@ -135,8 +137,16 @@ function App() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section id="testimonials" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Cosa Dicono i Nostri Clienti</h2>
+          <TestimonialsCarousel />
+        </div>
+      </section>
+
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-white">
+      <section id="contact" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-8">Pronto a Iniziare?</h2>
           <p className="text-gray-600 mb-8">Unisciti a migliaia di utenti che si affidano a Trusty AI per le loro attività quotidiane.</p>
@@ -194,6 +204,158 @@ function StepCard({ number, title, description }) {
       <p className="text-gray-600">{description}</p>
     </motion.div>
   )
+}
+
+function TestimonialsCarousel() {
+  const testimonials = [
+    {
+      id: 1,
+      name: "Marco Rossi",
+      role: "CEO, TechSolutions",
+      image: "https://randomuser.me/api/portraits/men/32.jpg",
+      text: "Trusty AI ha rivoluzionato il modo in cui gestiamo le richieste dei clienti. La precisione e la velocità delle risposte sono impressionanti.",
+      rating: 5
+    },
+    {
+      id: 2,
+      name: "Laura Bianchi",
+      role: "Marketing Manager, CreativeMinds",
+      image: "https://randomuser.me/api/portraits/women/44.jpg",
+      text: "Utilizziamo Trusty AI per generare idee creative e analizzare i dati di mercato. Ha migliorato la nostra produttività del 40%.",
+      rating: 5
+    },
+    {
+      id: 3,
+      name: "Giovanni Verdi",
+      role: "Sviluppatore, CodeMasters",
+      image: "https://randomuser.me/api/portraits/men/67.jpg",
+      text: "Come sviluppatore, apprezzo la capacità di Trusty AI di aiutarmi a debuggare il codice e suggerire soluzioni efficaci.",
+      rating: 4
+    },
+    {
+      id: 4,
+      name: "Francesca Neri",
+      role: "Studentessa Universitaria",
+      image: "https://randomuser.me/api/portraits/women/17.jpg",
+      text: "Trusty AI mi aiuta con le ricerche e lo studio. È come avere un tutor personale disponibile 24/7.",
+      rating: 5
+    }
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(null);
+
+  const nextTestimonial = () => {
+    setDirection("right");
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setDirection("left");
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
+  };
+
+  // Auto-scroll effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextTestimonial();
+    }, 8000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const variants = {
+    enter: (direction) => {
+      return {
+        x: direction === "right" ? 300 : -300,
+        opacity: 0
+      };
+    },
+    center: {
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction) => {
+      return {
+        x: direction === "right" ? -300 : 300,
+        opacity: 0
+      };
+    }
+  };
+
+  return (
+    <div className="relative max-w-4xl mx-auto">
+      <div className="overflow-hidden rounded-xl bg-gray-50 shadow-lg">
+        <div className="relative h-full">
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="p-8 md:p-12"
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className="mb-6 text-primary">
+                  <FaQuoteLeft className="w-10 h-10 opacity-20" />
+                </div>
+                <p className="text-lg md:text-xl text-gray-700 mb-8 italic">"{testimonials[currentIndex].text}"</p>
+                <div className="flex mb-4">
+                  {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                    <FaStar key={i} className="text-yellow-400 w-5 h-5" />
+                  ))}
+                </div>
+                <div className="flex items-center flex-col">
+                  <img 
+                    src={testimonials[currentIndex].image} 
+                    alt={testimonials[currentIndex].name} 
+                    className="w-16 h-16 rounded-full object-cover border-2 border-primary mb-3"
+                  />
+                  <h4 className="font-semibold text-lg">{testimonials[currentIndex].name}</h4>
+                  <p className="text-gray-600 text-sm">{testimonials[currentIndex].role}</p>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="flex justify-center mt-8 space-x-2">
+        {testimonials.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              setDirection(index < currentIndex ? "left" : "right");
+              setCurrentIndex(index);
+            }}
+            className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+              index === currentIndex ? "bg-primary" : "bg-gray-300"
+            }`}
+            aria-label={`Go to testimonial ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Arrow Navigation */}
+      <button
+        onClick={prevTestimonial}
+        className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 md:-translate-x-full bg-white p-3 rounded-full shadow-md text-primary hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+        aria-label="Previous testimonial"
+      >
+        <FaChevronLeft className="w-5 h-5" />
+      </button>
+      <button
+        onClick={nextTestimonial}
+        className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 md:translate-x-full bg-white p-3 rounded-full shadow-md text-primary hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
+        aria-label="Next testimonial"
+      >
+        <FaChevronRight className="w-5 h-5" />
+      </button>
+    </div>
+  );
 }
 
 export default App 
